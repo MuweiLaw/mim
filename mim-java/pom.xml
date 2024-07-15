@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.14</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.murray</groupId>
+    <artifactId>mim-java</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>mim-model</module>
+        <module>mim-commons</module>
+        <module>mim-admin</module>
+        <module>mim-rest</module>
+        <module>mim-websocket</module>
+        <module>mim-mqtt</module>
+    </modules>
+    <!--统一管理jar包版本-->
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <spring-boot.version>2.7.14</spring-boot.version>
+        <mysql.version>8.0.28</mysql.version>
+        <mybatis.plus.version>3.5.3.1</mybatis.plus.version>
+        <swagger.version>2.10.5</swagger.version>
+        <project.sub.version>0.0.1-SNAPSHOT</project.sub.version>
+    </properties>
+
+    <!--子模块继承之后,子模块锁定版本号,且不用写groupId和version-->
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>com.murray</groupId>
+                <artifactId>mim-commons</artifactId>
+                <version>${project.sub.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.murray</groupId>
+                <artifactId>mim-model</artifactId>
+                <version>${project.sub.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.murray</groupId>
+                <artifactId>mim-mqtt</artifactId>
+                <version>${project.sub.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.murray</groupId>
+                <artifactId>mim-websocket</artifactId>
+                <version>${project.sub.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.murray</groupId>
+                <artifactId>mim-admin</artifactId>
+                <version>${project.sub.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.murray</groupId>
+                <artifactId>mim-rest</artifactId>
+                <version>${project.sub.version}</version>
+            </dependency>
+
+            <!--lombok-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <!--    mybatis-plus    -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis.plus.version}</version>
+            </dependency>
+            <!-- mysql -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <scope>runtime</scope>
+                <version>${mysql.version}</version>
+            </dependency>
+            <!--swagger-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
