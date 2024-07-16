@@ -1,11 +1,11 @@
 server:
-  port: 40713
+  port: 40715
   servlet:
-    context-path: /rest
+    context-path: /ws
 
 spring:
   application:
-    name: mim-rest
+    name: mim-ws
   profiles:
     active: dev
   datasource:

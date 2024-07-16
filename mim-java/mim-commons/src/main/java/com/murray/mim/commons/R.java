@@ -54,7 +54,7 @@ public class R<T> implements Serializable {
     }
 
     public boolean isSuccess() {
-        return CODE_SUCCESS.equals(this.code);
+        return CODE_SUCCESS.equals(String.valueOf(this.code));
     }
 
     public String getCode() {

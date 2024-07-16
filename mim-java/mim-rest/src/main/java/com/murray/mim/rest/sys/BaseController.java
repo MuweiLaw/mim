@@ -1,4 +1,4 @@
-package com.murray.mim.rest.base;
+package com.murray.mim.rest.sys;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 

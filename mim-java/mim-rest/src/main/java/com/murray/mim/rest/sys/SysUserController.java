@@ -2,7 +2,6 @@ package com.murray.mim.rest.sys;
 
 import com.murray.mim.commons.R;
 import com.murray.mim.commons.service.SysUserService;
-import com.murray.mim.rest.base.BaseController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

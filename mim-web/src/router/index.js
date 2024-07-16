@@ -8,6 +8,33 @@ const routes = [
     component: IndexView,
   },
   {
+    path: "/tts",
+    name: "tts",
+    children: [
+      {
+        path: "process",
+        name: "ttsProcessView",
+        component: () => import("../views/tts/TtsProcessView.vue"),
+      },
+    ],
+  },
+  {
+    path: "/chat",
+    name: "chat",
+    children: [
+      {
+        path: "person",
+        name: "chatPersonView",
+        component: () => import("../views/chat/ChatPersonView.vue"),
+      },
+    ],
+  },
+  {
+    path: "/test",
+    name: "test",
+    component: () => import("../views/TestView.vue"),
+  },
+  {
     path: "/about",
     name: "about",
     // route level code-splitting
