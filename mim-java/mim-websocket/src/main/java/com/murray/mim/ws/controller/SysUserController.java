@@ -1,4 +1,4 @@
-package com.murray.mim.rest.sys;
+package com.murray.mim.ws.controller;
 
 import com.murray.mim.commons.controller.BaseController;
 import com.murray.mim.commons.controller.R;
@@ -20,15 +20,7 @@ public class SysUserController implements BaseController {
      * 获取用户编号(测试用)
      */
     @GetMapping("/user-no/{id}")
-    public R<String> getUserNoById(@PathVariable("id") String id) {
+    public R<String> getImageCode(@PathVariable("id") String id) {
         return R.assertion(SysUserService.getUserNoById(id));
-    }
-
-    /**
-     * 获取用户编号(测试用)
-     */
-    @GetMapping("/user-no/mapper/{id}")
-    public R<String> getUserNoByIdMapper(@PathVariable("id") String id) {
-        return R.assertion(SysUserService.getUserNoByIdMapper(id));
     }
 }

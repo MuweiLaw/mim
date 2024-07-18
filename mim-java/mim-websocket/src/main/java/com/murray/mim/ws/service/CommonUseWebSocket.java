@@ -3,7 +3,7 @@ package com.murray.mim.ws.service;
 import cn.hutool.json.JSONUtil;
 import com.murray.mim.commons.exception.BusinessException;
 import com.murray.mim.model.dto.IMMessage;
-import com.murray.mim.model.dto.SessionDto;
+import com.murray.mim.ws.dto.SessionDto;
 import com.murray.mim.model.enums.CommonErrorEnum;
 import com.murray.mim.model.enums.ServerEnum;
 import com.murray.mim.model.enums.WsMsgGroupEnum;
@@ -22,9 +22,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.murray.mim.ws.config.WebSocketConfig.SESSION_MAP;
 
-@ServerEndpoint("/commonUse/websocket/{serverName}/{userId}")
-@Component
 @Slf4j
+@Component
+@ServerEndpoint("/commonUse/websocket/{serverName}/{userId}")
 public class CommonUseWebSocket {
 
 

@@ -1,4 +1,4 @@
-package com.murray.mim.model.dto;
+package com.murray.mim.ws.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

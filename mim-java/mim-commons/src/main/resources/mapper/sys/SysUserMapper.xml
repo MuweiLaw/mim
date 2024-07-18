@@ -21,10 +21,10 @@
 
     </sql>
     <!--系统用户查询结果集-->
-    <resultMap id="pageSysUserResultMap" type="com.murray.mim.model.dao.SysUserPojo">
+    <resultMap id="pageSysUserResultMap" type="com.murray.mim.model.dao.SysUserDao">
         <result property="id" column="id"/>
-        <result property="userId" column="userId"/>
-        <result property="nickNo" column="nickName"/>
+        <result property="userNo" column="userId"/>
+        <result property="nickName" column="nickName"/>
         <result property="image" column="image"/>
         <result property="phone" column="phone"/>
         <result property="password" column="password"/>
@@ -135,8 +135,13 @@
         </where>
 
     </select>
+
     <select id="getRolesByUserId" resultType="String">
         SELECT tsr.role_name FROM `sys_role_user` tsru LEFT JOIN `sys_role` tsr ON  tsru.role_id = tsr.id WHERE tsru.uid = #{id}
+    </select>
+
+    <select id="getUserNoByIdMapper" resultType="String">
+        SELECT `user_no` from sys_user WHERE id=#{id}
     </select>
 
 

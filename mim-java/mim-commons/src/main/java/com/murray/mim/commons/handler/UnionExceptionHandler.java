@@ -1,10 +1,9 @@
 package com.murray.mim.commons.handler;
 
 
+import com.murray.mim.commons.controller.R;
 import com.murray.mim.commons.exception.BusinessException;
-import com.murray.mim.commons.R;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static com.murray.mim.model.enums.CommonErrorEnum.INTERNAL_SERVER_ERROR;
+import static com.murray.mim.model.enums.CommonErrorEnum.*;
 
 
 /**
@@ -44,16 +43,42 @@ public class UnionExceptionHandler {
 
 
     /**
+     * 全局业务异常捕捉处理
+     *
+     * @param ex 异常
+     */
+    @ExceptionHandler(BusinessException.class)
+    public R<Void> clientErrorExceptionHandler(BusinessException ex, HttpServletRequest req) {
+        //抛出业务错误异常
+        log.warn("======>>> \"{}\"  [{}] Exception :: {}", req.getRequestURI(), BUSINESS_LOGIC_ERROR, ex.getMessage());
+        ex.printStackTrace();
+        return R.error(BUSINESS_LOGIC_ERROR.getCode().toString(), ex.getMessage(), null);
+    }
+
+
+    /**
+     * 全局mybatis绑定异常捕捉处理
+     *
+     * @param ex 异常
+     */
+    @ExceptionHandler(org.apache.ibatis.binding.BindingException.class)
+    public R<Void> ExceptionHandler(org.apache.ibatis.binding.BindingException ex, HttpServletRequest req) {
+        //抛出客户端业务错误异常
+        log.warn("======>>> \"{}\" [{}] Exception :: {}", req.getRequestURI(), MYBATIS_BINDING_ERROR, ex.getMessage());
+        ex.printStackTrace();
+        return R.error(MYBATIS_BINDING_ERROR.getCode().toString(), ex.getMessage(), null);
+    }
+
+    /**
      * 全局异常捕捉处理
      *
      * @param ex 异常
-     * @return com.indiev.sc.common.result.Result
-     * @date 2022/3/21 10:54
      */
-    @ExceptionHandler(BusinessException.class)
-    public R<Void> clientErrorExceptionHandler(Exception ex, HttpServletRequest req) {
-        //抛出Keycloak客户端错误异常
-        log.warn("======>>> \"{}\" throw business exception :: {}", req.getRequestURI(), ex.getMessage());
+    @ExceptionHandler(Exception.class)
+    public R<Void> ExceptionHandler(Exception ex, HttpServletRequest req) {
+        //抛出客户端业务错误异常
+        log.warn("======>>> \"{}\"  [{}] Exception :: {}", req.getRequestURI(), INTERNAL_SERVER_ERROR, ex.getMessage());
+        ex.printStackTrace();
         return R.error(INTERNAL_SERVER_ERROR.getCode().toString(), ex.getMessage(), null);
     }
 

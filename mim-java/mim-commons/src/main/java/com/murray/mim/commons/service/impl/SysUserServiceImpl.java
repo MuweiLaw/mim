@@ -16,8 +16,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDao> implements SysUserService {
 
-    public IPage<SysUserDao> getPageSystemUser(IPage<SysUserDao> queryMap) {
-        return baseMapper.getPageAdminSysUser(queryMap);
+    public IPage<SysUserDao> getPageSystemUser(IPage<SysUserDao> queryMap, SysUserDao dao) {
+        return baseMapper.getPageAdminSysUser(queryMap, dao);
     }
 
     /**
@@ -30,6 +30,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDao> i
     @Cacheable(cacheNames = "getUserNoById", key = "#id")
     public String getUserNoById(String id) {
         return baseMapper.getUserNoById(id);
+    }
+
+    public String getUserNoByIdMapper(String id) {
+        return baseMapper.getUserNoByIdMapper(id);
     }
 }
 

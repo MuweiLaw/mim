@@ -1,6 +1,6 @@
 package com.murray.mim.ws.config;
 
-import com.murray.mim.model.dto.SessionDto;
+import com.murray.mim.ws.dto.SessionDto;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;

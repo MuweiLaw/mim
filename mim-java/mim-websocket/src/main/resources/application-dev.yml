@@ -30,7 +30,7 @@ spring:
 
 logging:
   file:
-    path: /data/dev/logs/mim/admin/
+    path: /data/dev/logs/mim/websocket/
   level:
     root: info
 logging.level:

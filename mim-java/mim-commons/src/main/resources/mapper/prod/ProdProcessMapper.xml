@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.murray.mim.commons.mapper.ProdProcessMapper">
+    <sql id="selectColumn">
+    ta.id
+    ,ta.process_no as processNo
+    ,ta.process_title as processTitle
+    ,ta.process_body as processBody
+    ,ta.process_time as processTime
+    ,ta.exe_role as exeRole
+    ,ta.version
+    ,ta.is_enable as isEnable
+    ,ta.create_by as createBy
+    ,ta.create_time as createTime
+    ,ta.update_by as updateBy
+    ,ta.update_time as updateTime
+    </sql>
+
+    <!--条件查询列表-->
+    <select id="pageConditions" resultType="com.murray.mim.model.dao.ProdProcessDao">
+        select
+        <include refid="selectColumn"/>
+        FROM prod_process ta
+
+        <where>
+            <if test="query.id != null ">
+                AND ta.id = #{query.id}
+            </if>
+            <!-- 用户名 -->
+            <if test="query.processNo != null and query.processNo != ''">
+                AND ta.process_no = #{query.processNo}
+            </if>
+            <if test="query.processTitle != null and query.processTitle != ''">
+                AND ta.process_title LIKE concat('%',#{query.processTitle},'%')
+            </if>
+            <if test="query.processBody != null and query.processBody != ''">
+                AND ta.process_body LIKE concat('%',#{query.processBody},'%')
+            </if>
+            <if test="query.processTime != null and query.processTime != ''">
+                AND ta.process_time = #{query.processTime}
+            </if>
+            <!-- 手机号码 -->
+            <if test="query.exeRole != null and query.exeRole != ''">
+                AND ta.exe_role = #{query.exeRole}
+            </if>
+            <!-- 版本号 -->
+            <if test="query.version != null and query.version != ''">
+                AND ta.version = #{query.version}
+            </if>
+            <!-- 状态 {0:禁用,1:启用} -->
+            <if test="query.isEnable != null and query.isEnable != ''">
+                AND ta.is_enable = #{query.isEnable}
+            </if>
+            <!-- 创建人 -->
+            <if test="query.createBy != null and query.createBy != ''">
+                AND ta.create_by = #{query.createBy}
+            </if>
+            <!-- 创建时间 -->
+            <if test="query.createTimeStart != null and query.createTimeStart != ''">
+                <![CDATA[
+                        AND ta.create_time >= #{query.createTimeStart}
+                        ]]>
+            </if>
+            <if test="query.createTimeEnd != null and query.createTimeEnd != ''">
+                <![CDATA[
+                        AND ta.create_time <= #{query.createTimeEnd}
+                        ]]>
+            </if>
+            <!-- 修改人 -->
+            <if test="query.updateBy != null and query.updateBy != ''">
+                AND ta.update_by = #{query.updateBy}
+            </if>
+            <!-- 修改时间 -->
+            <if test="query.updateTimeStart != null and query.updateTimeStart != ''">
+                <![CDATA[
+                        AND ta.update_time >= #{query.updateTimeStart}
+                        ]]>
+            </if>
+            <if test="query.updateTimeEnd != null and query.updateTimeEnd != ''">
+                <![CDATA[
+                        AND ta.update_time <= #{query.updateTimeEnd}
+                        ]]>
+            </if>
+
+            <if test="query.ids != null and query.ids != ''">
+                <foreach collection="query.ids" item="item" open="AND ta.id IN(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+
+    </select>
+</mapper>
+
+      

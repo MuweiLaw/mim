@@ -1,4 +1,4 @@
-package com.murray.mim.commons;
+package com.murray.mim.commons.controller;
 
 import java.io.Serializable;
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package com.murray.mim.rest.sys;
+package com.murray.mim.commons.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 

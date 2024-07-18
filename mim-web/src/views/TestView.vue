@@ -23,7 +23,7 @@ let test = ref({
 
 function testUserNo() {
   let url = "http://127.0.0.1:40713/rest/sys/user/user-no/1";
-  //post()请求部分
+  //get()请求部分
   axios
     .get(url) //服务响应后，调用的函数  response 响应对象
     .then(function (response) {
